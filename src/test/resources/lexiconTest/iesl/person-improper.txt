@@ -1,0 +1,10 @@
+uncle
+aunt
+cousin
+father
+mother
+son
+daughter
+grandfather
+grandmother
+brother

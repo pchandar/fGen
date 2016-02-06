@@ -1,0 +1,10 @@
+NLCS
+Baseball/National League Championship Series
+NL Championship Series
+ALCS
+Baseball/American League Championship Series
+Alds
+Baseball/American League Divisional Series
+ALDS
+American League Divisional Series
+Baseball/National League Divisional Series

@@ -1,0 +1,10 @@
+# http://en.wikipedia.org/wiki/List_of_adjectival_forms_of_place_names
+Africa	African	Africans
+Antarctica	Antarctic	Antarctican
+America	American	Americans
+Asia	Asian	Asians
+Middle East	Middle Eastern	Middle Easterners
+Australasia	Australasian	Australasians
+Australia	Australian	Australians
+Eurasia	Eurasian	Eurasians
+Europe	European	Europeans

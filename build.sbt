@@ -6,13 +6,19 @@ scalaVersion := "2.11.7"
 
 organization := "com.pchandar"
 
-assemblyJarName in assembly := s"${name.value}-${version.value}"
+// If you need to specify main classes manually, use packSettings and packMain
+packSettings
 
-unmanagedJars in Compile += file("lib/factorie_2.11-1.2.20160119-SNAPSHOT.jar")
+packMain := Map("fGen" -> "com.pchandar.app.Boot")
+packJarNameConvention := s"${name.value}-${version.value}"
+packGenerateWindowsBatFile := true
 
-assemblyOutputPath in assembly := baseDirectory.value / s"lib/${name.value}-${version.value}.jar"
+unmanagedJars in Compile <++= baseDirectory map { base =>
+    val libs = base / "lib"
+    (libs ** "*.jar").classpath
+}
 
-mainClass in assembly := Some("com.pchandar.app.Boot")
+checksums in update := Nil
 
 libraryDependencies ++= Seq(
   //Mongo, JSON, XML
@@ -41,15 +47,18 @@ libraryDependencies ++= Seq(
   "org.rogach" %% "scallop" % "0.9.5",
 
   // JFlex
-  "de.jflex" % "jflex" % "1.6.1",
+  "de.jflex" % "jflex" % "1.6.1" % "provided",
 
   // NLP libraries
   "edu.stanford.nlp" % "stanford-corenlp" % "3.5.1",
 
   // Fast HashMap
-  "net.openhft" % "chronicle-map" % "3.4.2-beta"
+  "net.openhft" % "chronicle-map" % "2.4.12"
 
 )
+
+
+
 resolvers ++= Seq(
   "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/",
   Resolver.sonatypeRepo("snapshots"),

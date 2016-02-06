@@ -67,8 +67,7 @@ object NerUtils{
     result
   }
 
-  /** Convenience alias for @see com.xdotai.nlp.iobBoundaries */
+  /** Convenience alias for iobBoundaries */
   def bioBoundaries(labels:Seq[String]): Seq[(Int,Int,String)] = iobBoundaries(labels)
 
 }
-

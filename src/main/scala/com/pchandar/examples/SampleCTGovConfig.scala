@@ -17,11 +17,11 @@ class SampleCTGovConfig extends FGenConfig {
   override val outputFolder = {
     val path = workingDir + "/sampleCTGov"
     if (!new File(path).exists()) new File(path).mkdir()
-    Some(new File(path).toURI.toURL)
+    Some(new File(path).getAbsolutePath)
   }
 
 
-  val dataSet = new ClinialTrialGovDataset("datasetDir")
+  val dataSet = new ClinialTrialGovDataset(getClass.getClassLoader.getResource("ctgovTest").getPath)
 
   val nLPResources = new NLPResources
   // Using deafault feature here but it can be easily extended to use experimental features

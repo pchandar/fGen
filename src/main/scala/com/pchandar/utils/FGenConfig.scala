@@ -5,7 +5,7 @@ import java.net.URL
 
 import com.mongodb.casbah.MongoCollection
 import com.pchandar.datapoints.DataPointGenerator
-import com.pchandar.load.{MongoDataSet, DataSetSourceType, DataSet}
+import com.pchandar.load.{FileDataSet, MongoDataSet, DataSetSourceType, DataSet}
 import org.slf4j.LoggerFactory
 
 trait FGenConfig {
@@ -14,7 +14,7 @@ trait FGenConfig {
   val queueSize: Int = threadSize + 1
   val limit: Int
 
-  val datasetSourceType: DataSetSourceType = MongoDataSet
+  val datasetSourceType: DataSetSourceType = FileDataSet
 
   val dataSet: DataSet[DocumentType]
 
@@ -25,7 +25,7 @@ trait FGenConfig {
   //TODO Move this to output formats
   // Output to Mongo
   val outputCollection: Option[MongoCollection] = None
-  val outputFolder: Option[URL] = None
+  val outputFolder: Option[String] = None
 
 
   // Output Path Details

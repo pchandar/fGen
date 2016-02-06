@@ -3,11 +3,11 @@ package com.pchandar.nlp
 import cc.factorie.app.nlp.lexicon.{LexiconsProvider, StaticLexicons}
 import cc.factorie.app.nlp.ner.ConllChainNer
 import cc.factorie.app.nlp.pos.OntonotesForwardPosTagger
-import cc.factorie.util.ModelProvider
+import cc.factorie.util.{ClasspathURL, ModelProvider}
 import org.slf4j.LoggerFactory
 
 
-class NLPResources(lexiconDirectory: String = "lexicon/") {
+class NLPResources(lexiconDirectory: String = "cc/factorie/app/nlp/lexicon/") {
   val logger = LoggerFactory.getLogger(getClass.getName)
 
   // TODO: Lazy val is probably bad here (might lead to delayed failures
@@ -43,7 +43,9 @@ class NLPResources(lexiconDirectory: String = "lexicon/") {
   lazy val nerTagger: ConllChainNer = {
     try {
       logger.info(s"Loading ConllChainNer Model ...")
-      val factorieNERTagger: ConllChainNer = new ConllChainNer()(ModelProvider.classpath[ConllChainNer](".model"),
+      val props = System.getProperties()
+      props.setProperty(ConllChainNer.getClass.getName, getClass.getClassLoader.getResource("models/ConllChainNer").getPath)
+      val factorieNERTagger: ConllChainNer = new ConllChainNer()(ModelProvider.classpath[ConllChainNer](),
         allTheLexicons)
       logger.info(s"Loading ConllChainNer Model ... Done!!!")
       factorieNERTagger

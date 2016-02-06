@@ -1,9 +1,9 @@
 package com.pchandar.datapoints
 
 import cc.factorie.app.nlp.Document
-import cc.factorie.variable.LabeledMutableDiscreteVar
+import com.pchandar.nlp.ner.FGenSequentialFeatures
 
-case class LabeledDataPoint(id: String, vec: Seq[LabeledMutableDiscreteVar]) extends Serializable
+case class LabeledDataPoint(id: String, vec: Seq[FGenSequentialFeatures]) extends Serializable
 
 /**
   * FeatureVectorGenerators defines a way to convert an Document to a data point.

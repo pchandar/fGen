@@ -17,11 +17,10 @@ object Boot {
   def main(args: Array[String]): Unit = {
     try {
       logger.info("Start of fGen")
-
       val opts = new LazyScallopConf(args) {
         banner("""Example: com.pchandar.app.Boot -action [umls|generate] -config [configClass]""".stripMargin)
-        val action = opt[String]("action", short = 'a', required = true, descr = "create umls or generate features")
-        val config = opt[String]("config", short = 'c', required = false, descr = "config class")
+        val action = opt[String]("action", short = 'a', required = true, descr = "umls, load or generate")
+        val config = opt[String]("config", short = 'c', required = true, descr = "config class / file")
         val help = opt[Boolean]("help", noshort = true, descr = "Show this message")
       }
 
@@ -39,10 +38,10 @@ object Boot {
           val config: Config = ConfigFactory.parseFile(new File(opts.config()))
           umls.build(config.getString("hashMapPath"), config.getString("umlsDatasetPath"))
 
-        case "generateFromMongo" =>
+        case "generate" =>
           GenerateFeatures.run(FGenConfig.getConfigFromString(opts.config()))
 
-        case "loadData" =>
+        case "load" =>
           LoadDatasetToMongo.loadDocumentsFromFileToMongo(FGenConfig.getConfigFromString(opts.config()))
 
       }

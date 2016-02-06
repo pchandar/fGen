@@ -1,0 +1,1 @@
+resources/cc/factorie/app/nlp/ner/ConnlChainNer.factorie filter=lfs diff=lfs merge=lfs -text
